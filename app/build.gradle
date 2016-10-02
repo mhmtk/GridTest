@@ -18,6 +18,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+    }
 }
 
 dependencies {
@@ -43,5 +46,13 @@ dependencies {
     compile 'com.facebook.fresco:fresco:0.14.0'
     compile 'com.facebook.fresco:imagepipeline-okhttp3:0.14.0'
 
-    testCompile 'junit:junit:4.12'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.4'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.7.4'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.4'
+
+    compile 'com.birbit:android-priority-jobqueue:2.0.0'
+
+    compile 'org.greenrobot:eventbus:3.0.0'
+
+//    testCompile 'junit:junit:4.12'
 }

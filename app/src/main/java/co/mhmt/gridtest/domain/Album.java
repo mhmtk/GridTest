@@ -9,10 +9,8 @@ public class Album {
   private int userId;
   private String title;
 
-  public Album(final int id, final int userId, final String title) {
-    this.id = id;
-    this.userId = userId;
-    this.title = title;
+  public Album() {
+
   }
 
   public int getId() {

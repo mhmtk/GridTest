@@ -30,4 +30,9 @@ public class AlbumsRecyclerViewAdapter extends RecyclerView.Adapter<AlbumsViewHo
   @Override public int getItemCount() {
     return albumList.size();
   }
+
+  public void update(final List<Album> albums) {
+    albumList = albums;
+    notifyDataSetChanged();
+  }
 }

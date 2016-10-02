@@ -9,7 +9,7 @@ import butterknife.ButterKnife;
 import co.mhmt.gridtest.R;
 import co.mhmt.gridtest.domain.Album;
 
-public class AlbumsViewHolder extends RecyclerView.ViewHolder{
+public class AlbumsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
 
   @BindView(R.id.text_view_title)
@@ -18,9 +18,14 @@ public class AlbumsViewHolder extends RecyclerView.ViewHolder{
   public AlbumsViewHolder(final View itemView) {
     super(itemView);
     ButterKnife.bind(this, itemView);
+
   }
 
   public void bind(final Album album) {
     titleTextView.setText(album.getTitle());
+  }
+
+  @Override public void onClick(final View v) {
+    eventBus
   }
 }

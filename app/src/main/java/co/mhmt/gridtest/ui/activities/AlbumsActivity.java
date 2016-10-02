@@ -1,9 +1,11 @@
 package co.mhmt.gridtest.ui.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.os.AsyncTaskCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,39 +15,45 @@ import butterknife.ButterKnife;
 import co.mhmt.gridtest.R;
 import co.mhmt.gridtest.adapters.AlbumsRecyclerViewAdapter;
 import co.mhmt.gridtest.domain.Album;
+import co.mhmt.gridtest.jobs.AlbumsDownloaded;
+import co.mhmt.gridtest.jobs.DownloadAlbums;
 
-public class AlbumsActivity extends AppCompatActivity {
+public class AlbumsActivity extends BaseActivity {
 
   @BindView(R.id.recycler_view_albums)
   protected RecyclerView albumsRecyclerView;
   private AlbumsRecyclerViewAdapter albumsAdapter;
 
-  private List<Album> dummyData = new ArrayList<>();
+  private List<Album> albums;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
-    
+
+    albums = new ArrayList<>();
+
+    AsyncTaskCompat.executeParallel(new DownloadAlbums(), retrofit);
     initiateUI();
-
-    dummyData.add(new Album(0,0, "YOLO OR SWA SD ASDJ DJL DJ: LASDJ :DJ D:KSJ JLAD  D:JASD DJ LDJAS :ASJA SADDSDLAS DKASD  JDSAJ ASDJAS DASD ASDJS DJAS DAS DASJ DKASD ASJD ASDJKA SDJSAD KASDJ AKSD ASDKA DS"));
-    dummyData.add(new Album(0,0, "aasg dsfdsf asdf asfsdf asdfasda"));
-
-    dummyData.add(new Album(0,0, "YOLO OR SWA SD ASDJ DJL DJ: LASDJ :DJ D:KSJ JLAD  D:JASD DJ LDJAS :ASJA SADDSDLAS DKASD  JDSAJ ASDJAS DASD ASDJS DJAS DAS DASJ DKASD ASJD ASDJKA SDJSAD KASDJ AKSD ASDKA DS\n"
-                            + "asdasdasf afdsf asf dsfasd fdsaf asdfasd fas"));
-    dummyData.add(new Album(0,0, "aasg dsfdsf asdf asfsdf asdfasda"));
   }
 
   private void initiateUI() {
-    albumsAdapter = new AlbumsRecyclerViewAdapter(dummyData);
-    albumsRecyclerView.setHasFixedSize(false);
+    albumsAdapter = new AlbumsRecyclerViewAdapter(albums);
+    albumsRecyclerView.setHasFixedSize(true);
     albumsRecyclerView.setLayoutManager(new LinearLayoutManager(AlbumsActivity.this));
     albumsRecyclerView.setAdapter(albumsAdapter);
 
 //    albumsRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, OrientationHelper.VERTICAL));
 //    albumsRecyclerView.setEmptyView(emptyView);
 //    albumsRecyclerView.setFloatingActionButton(fabAddImage);
+  }
+
+  @SuppressWarnings("UnusedDeclaration")
+  @Subscribe public void albumsDonwloaded(final AlbumsDownloaded event) {
+    if (event.getAlbums() != null) {
+      albumsAdapter.update(event.getAlbums());
+    }
+    eventBus.removeStickyEvent(event);
   }
 }
