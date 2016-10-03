@@ -2,15 +2,14 @@ package co.mhmt.gridtest.ui.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import android.support.v7.widget.Toolbar;
 
 import org.greenrobot.eventbus.EventBus;
 
-import co.mhmt.gridtest.Constant;
+import co.mhmt.gridtest.R;
 import retrofit2.Retrofit;
-import retrofit2.converter.jackson.JacksonConverterFactory;
 
 public class BaseActivity extends AppCompatActivity{
 
@@ -19,22 +18,29 @@ public class BaseActivity extends AppCompatActivity{
 
   @Override protected void onCreate(@Nullable final Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    retrofit = new Retrofit.Builder().baseUrl(Constant.NETWORK.BASE_URL)
-//                                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                                     .addConverterFactory(JacksonConverterFactory.create(new ObjectMapper()))
-//                                       .client(client)
-                                     .build();
-
     eventBus = EventBus.getDefault();
   }
 
-  @Override protected void onResume() {
-    super.onResume();
+  protected void setToolbar() {
+    Toolbar toolbar = (Toolbar) findViewById(R.id.default_toolbar);
+    setSupportActionBar(toolbar);
+  }
+
+  protected void enableUpNavigation() {
+    ActionBar ab = getSupportActionBar();
+    if (ab != null) {
+      ab.setDisplayHomeAsUpEnabled(true);
+    }
+  }
+
+  @Override protected void onStart() {
+    super.onStart();
     eventBus.register(this);
   }
 
-  @Override protected void onPause() {
-    super.onPause();
+
+  @Override protected void onStop() {
+    super.onStop();
     eventBus.unregister(this);
   }
 }

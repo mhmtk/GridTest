@@ -1,3 +1,5 @@
 <resources>
   <string name="app_name">GridTest</string>
+  <string name="activity_title_photos">Photos</string>
+  <string name="activity_title_albums">Albums</string>
 </resources>

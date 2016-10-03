@@ -7,7 +7,7 @@ import org.greenrobot.eventbus.EventBus;
 
 import butterknife.ButterKnife;
 
-public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
+public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
 
   protected final EventBus eventBus;
 
@@ -16,4 +16,6 @@ public abstract class BaseViewHolder extends RecyclerView.ViewHolder {
     ButterKnife.bind(this, itemView);
     eventBus = EventBus.getDefault();
   }
+
+  public abstract void bind(final T data);
 }

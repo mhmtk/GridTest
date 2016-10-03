@@ -45,6 +45,7 @@ dependencies {
 
     compile 'com.facebook.fresco:fresco:0.14.0'
     compile 'com.facebook.fresco:imagepipeline-okhttp3:0.14.0'
+    compile 'me.relex:photodraweeview:1.0.0'
 
     compile 'com.fasterxml.jackson.core:jackson-databind:2.7.4'
     compile 'com.fasterxml.jackson.core:jackson-core:2.7.4'

@@ -9,7 +9,7 @@ import co.mhmt.gridtest.Constant;
 public final class ViewUtils {
 
   public static int calculateSpanCount(final Activity activity, int totalWidth, @DimenRes int itemWidth) {
-    int a = (int) (Constant.UI.IMAGE_SET_GRID_SPACING * activity.getResources().getDisplayMetrics().density);
+    int a = (int) (Constant.IMAGE_SET_GRID_SPACING * activity.getResources().getDisplayMetrics().density);
     float b = a + (int) activity.getResources().getDimension(itemWidth);
     float c = -totalWidth;
     int x1 = (int) (-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a);

@@ -7,6 +7,8 @@
     tools:context="co.mhmt.gridtest.ui.activities.AlbumsActivity"
     android:fitsSystemWindows="true">
 
-  <include layout="@layout/content_main"/>
+  <include layout="@layout/layout_toolbar" />
+
+  <include layout="@layout/content_albums"/>
 
 </android.support.design.widget.CoordinatorLayout>
