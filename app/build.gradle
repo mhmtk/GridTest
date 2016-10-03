@@ -14,7 +14,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -25,11 +25,7 @@ android {
 
 dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.0.1'
-
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
 
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:cardview-v7:24.2.1'
@@ -49,11 +45,6 @@ dependencies {
 
     compile 'com.fasterxml.jackson.core:jackson-databind:2.7.4'
     compile 'com.fasterxml.jackson.core:jackson-core:2.7.4'
-    compile 'com.fasterxml.jackson.core:jackson-annotations:2.7.4'
-
-    compile 'com.birbit:android-priority-jobqueue:2.0.0'
 
     compile 'org.greenrobot:eventbus:3.0.0'
-
-//    testCompile 'junit:junit:4.12'
 }

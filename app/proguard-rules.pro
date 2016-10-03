@@ -15,3 +15,13 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-dontwarn java.lang.invoke.*
+
+-keep class co.mhmt.gridtest.jobs.** { *; }
+
+-keep class co.mhmt.gridtest.domain.** {
+  public *** get*();
+  public void set*(***);
+  public boolean is*();
+}

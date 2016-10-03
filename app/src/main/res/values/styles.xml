@@ -15,4 +15,11 @@
     <item name="android:windowNoTitle">true</item>
   </style>
 
+  <style name="GridTestCardView">
+    <item name="cardCornerRadius">4dp</item>
+    <item name="cardElevation">3sp</item>
+    <item name="cardUseCompatPadding">true</item>
+    <item name="selectableItemBackground">?android:attr/selectableItemBackground</item>
+  </style>
+
 </resources>
