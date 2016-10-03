@@ -15,7 +15,8 @@ import butterknife.ButterKnife;
 import co.mhmt.gridtest.R;
 import co.mhmt.gridtest.adapters.AlbumsRecyclerViewAdapter;
 import co.mhmt.gridtest.domain.Album;
-import co.mhmt.gridtest.jobs.AlbumsDownloaded;
+import co.mhmt.gridtest.events.AlbumViewHolderClicked;
+import co.mhmt.gridtest.events.AlbumsDownloaded;
 import co.mhmt.gridtest.jobs.DownloadAlbums;
 
 public class AlbumsActivity extends BaseActivity {
@@ -55,5 +56,10 @@ public class AlbumsActivity extends BaseActivity {
       albumsAdapter.update(event.getAlbums());
     }
     eventBus.removeStickyEvent(event);
+  }
+
+  @SuppressWarnings("UnusedDeclaration")
+  @Subscribe public void albumViewHolderClicked(final AlbumViewHolderClicked event) {
+    //launch album activity
   }
 }
